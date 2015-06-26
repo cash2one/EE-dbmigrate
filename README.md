@@ -5,6 +5,11 @@
 
 EasyEngine (ee) is a python tool, which makes it easy to manage your wordpress sites running on nginx web-server.
 
+refered http://alembic.readthedocs.org/en/latest/tutorial.html#the-migration-environment for site migration
+requirements = alembic 
+# use pip3 install alembic ,, since apt-get install alembic --> adds alembic to python2 version
+
+
 **EasyEngine currently supports:**
 
 - Ubuntu 12.04 & 14.04
