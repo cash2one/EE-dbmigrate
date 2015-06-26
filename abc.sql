@@ -1,1 +1,0 @@
-CREATE TEMPORARY TABLE t1_backup(a,b);
