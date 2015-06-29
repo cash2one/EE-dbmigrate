@@ -49,12 +49,8 @@ def upgrade():
 
 
 def downgrade():
-	conn = sqlite3.connect('/var/lib/ee/ee.db')
-	c = conn.cursor()
-	#try:
-	for query in script.split(';'):
-	    c.execute(query)
-	conn.commit()
+    with op.batch_alter_table("sites") as batch_op:
+    	batch_op.drop_column('redis')
 
 
 # Output
