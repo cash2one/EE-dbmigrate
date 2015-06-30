@@ -12,37 +12,6 @@ down_revision = None
 
 from alembic import op
 import sqlalchemy as sa
-import sqlite3
-
-script = """CREATE TEMPORARY  TABLE sites_backup(id, sitename,site_type,cache_type, site_path, created_on, is_enabled,is_ssl,storage_fs,storage_db, db_name,db_user,db_password, db_host,is_hhvm,is_pagespeed);
-INSERT INTO sites_backup SELECT id,sitename,site_type,cache_type,site_path,created_on,is_enabled,is_ssl,storage_fs,storage_db,db_name,db_user,db_password,db_host,is_hhvm,is_pagespeed FROM sites;
-DROP TABLE sites;
-CREATE TABLE sites (
-        id INTEGER NOT NULL, 
-        sitename VARCHAR, 
-        site_type VARCHAR, 
-        cache_type VARCHAR, 
-        site_path VARCHAR, 
-        created_on DATETIME, 
-        is_enabled BOOLEAN NOT NULL, 
-        is_ssl BOOLEAN, 
-        storage_fs VARCHAR, 
-        storage_db VARCHAR, 
-        db_name VARCHAR, 
-        db_user VARCHAR, 
-        db_password VARCHAR, 
-        db_host VARCHAR, 
-        is_hhvm BOOLEAN, 
-        is_pagespeed BOOLEAN,
-        PRIMARY KEY (id), 
-        UNIQUE (sitename), 
-        CHECK (is_enabled IN (0, 1)), 
-        CHECK (is_ssl IN (0, 1)), 
-        CHECK (is_hhvm IN (0, 1)), 
-        CHECK (is_pagespeed IN (0, 1))
-);
-INSERT INTO sites SELECT id,sitename,site_type,cache_type,site_path,created_on,is_enabled,is_ssl,storage_fs,storage_db,db_name,db_user,db_password,db_host,is_hhvm,is_pagespeed FROM sites_backup;
-DROP TABLE sites_backup;"""
 
 def upgrade():
     op.add_column('sites', sa.Column('redis', sa.DateTime))
